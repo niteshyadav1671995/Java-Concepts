@@ -1,0 +1,66 @@
+The Classification of Exception is as follows :-
+
+Checked(Run-Time) and UnChecked (Compile Time)
+
+
+Throwable
+      ----      Error
+                ----      StackOverFlowError
+                ----      VirtualMachineError
+                ----      OutOfMemoryError
+      -----    Exception
+                      IOException
+                      SQLException
+                      ClassNotFoundException
+                      RuntimeException
+                                  Arithmetic Exception
+                                  NullPointerException
+                                  NumberFormatException
+                                  IndexOutOfBoundException
+                                              ArrayIndexOutOfBoundException
+                                              StringIndexOutOfBoundException
+
+Checked Exception
+
+The classes that extend Throwable class except RuntimeException and Error are known as checked exceptions 
+e.g.IOException, SQLException etc. Checked exceptions are checked at compile-time.
+
+
+Unchecked Exception
+The classes that extend RuntimeException are known as unchecked exceptions e.g. ArithmeticException, NullPointerException,
+ArrayIndexOutOfBoundsException etc. Unchecked exceptions are not checked at compile-time rather they are checked at runtime.
+
+
+Error
+Error is irrecoverable e.g. OutOfMemoryError, VirtualMachineError, AssertionError etc.
+
+
+
+
+
+There are 5 keywords used in java exception handling.
+
+try
+catch
+finally
+throw
+throws
+
+
+Try code takes the code be tested for the exception
+catch block
+      try and catch block between these two block there should not be anything
+      In the catch clause, specify the types of exceptions that block can handle, and separate each exception type with a vertical bar (|):
+
+      catch (IOException|SQLException ex) {
+          logger.log(ex);
+          throw ex;
+      }
+      Note: If a catch block handles more than one exception type, then the catch parameter is implicitly final. 
+      In this example, the catch parameter ex is final and therefore you cannot assign any values to it within the catch block.
+      
+      
+  The finally block is a key tool for preventing resource leaks. When closing a file or otherwise
+  recovering resources, place the code in a finally block to ensure that resource is always recovered.
+
+

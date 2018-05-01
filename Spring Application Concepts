@@ -1,0 +1,47 @@
+@RestController
+  @RestController is the combination of @Controller and @ResponseBody. When you use @RestController , response gets converted in Json
+  format implicitly and there is no need to declare @ResponseBody explicitly.It is defined to send only the data in defined formats and   retrieval of any view is not possible using it.
+  If you want to retrieve page from @restcontroller , you need to use ModelandView or write a new controller and annotate with             @Controller   and return view name so it will look for view resolver and render the appropriate page.
+  Spring 4.0 introduced @RestController, a specialized version of the controller which is a convenience annotation that does nothing       more than add the @Controller and @ResponseBody annotations. By annotating the controller class with @RestController annotation, you     no longer need to add @ResponseBody to all the request mapping methods. The @ResponseBody annotation is active by default. 
+
+It consists of @Controller and @ResponseBody
+  @Controller - 
+                
+  @ResponseBody -
+    The @ResponseBody annotation tells a controller that the object returned is automatically serialized into JSON and passed back into
+    the HttpResponse object
+    In Rest Application if u want to redirect to a new view that u need to use model and view object in which u will define the 
+    view name.
+    For Example : -
+                @RequestMapping(value = "/showlist", method = RequestMethod.GET)
+                public ModelAndView showList() {
+                  List userslist = importService.getUserList();
+                  ModelAndView model = new ModelAndView("ListUsers");
+                  model.addObject("users", userslist);
+                  return model;
+                }
+     
+     For Redirecting to the another url pattern the use redirect:./urlpatternname
+     For Example : - 
+               return new ModelAndView("redirect:./showlist");
+
+@Controller
+http://websystique.com/spring-4-mvc-tutorial/ For MVC Spring And information about Controller
+
+
+          @Controller
+          @RequestMapping("employees")
+          public class EmployeeController {
+              Employee employee = new Employee();
+              @RequestMapping(value = "/{name}", method = RequestMethod.GET, produces = "application/json")
+              public @ResponseBody Employee getEmployeeInJSON(@PathVariable String name) {
+                 employee.setName(name);
+                 employee.setEmail("employee1@genuitec.com");
+              return employee; 
+              }
+
+
+          Add the <context:component-scan> and <mvc:annotation-driven /> tags to the Spring configuration file.
+          <context:component-scan> activates the annotations and scans the packages to find and register beans within the application             context. 
+          <mvc:annotation-driven/> adds support for reading and writing JSON/XML if the Jackson/JAXB libraries are on the classpath. 
+          For JSON format, include the jackson-databind jar and for XML include the jaxb-api-osgi jar to the project classpath.

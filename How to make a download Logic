@@ -1,0 +1,11 @@
+	response.setContentType("application/vnd.ms-excel");
+		response.setHeader("Content-Disposition", "attachment; filename=\"Demo.xlsx");
+		try {
+			workbook.write(response.getOutputStream());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+    
+    application/vnd.ms-excel - this would define the type of file to downloaded 
+    "Content-Disposition", "attachment; filename=\"Demo.xlsx" - this will help in writing the file name which will be used to download
+    
